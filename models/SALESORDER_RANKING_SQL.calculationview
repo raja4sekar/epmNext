@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="SALESORDER_RANKING_SQL" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="internal" calculationScenarioType="SCRIPT_BASED" dataCategory="DEFAULT" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true">
+  <descriptions defaultDescription="SALESORDER_RANKING_SQL"/>
+  <localVariables>
+    <variable id="IP_FR_DTE" parameter="true">
+      <descriptions defaultDescription="IP_FR_DTE"/>
+      <variableProperties datatype="DATE" mandatory="true">
+        <valueDomain type="Date"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_TO_DTE" parameter="true">
+      <descriptions defaultDescription="IP_TO_DTE"/>
+      <variableProperties datatype="DATE" mandatory="true">
+        <valueDomain type="Date"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute datatype="VARCHAR" id="COMPANY_NAME" length="20"/>
+        <viewAttribute datatype="VARCHAR" id="SALES" length="20"/>
+        <viewAttribute datatype="VARCHAR" id="ORDERS" length="20"/>
+        <viewAttribute datatype="VARCHAR" id="SALES_RANK" length="20"/>
+        <viewAttribute datatype="VARCHAR" id="ORDER_RANK" length="20"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <localVariable>#IP_FR_DTE</localVariable>
+      <localVariable>#IP_TO_DTE</localVariable>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ var_out = 
+ 	 select company_name, sales, orders, sales_rank, order_rank from(                
+		           select  &quot;COMPANYNAME&quot; as company_name, sum(&quot;NETAMOUNT&quot;) as sales, count(&quot;SALESORDERID&quot;) as orders,
+		        	  dense_rank() over ( order by sum(&quot;NETAMOUNT&quot;) desc ) as sales_rank,
+		        	  dense_rank() over ( order by count(&quot;SALESORDERID&quot;) desc ) as order_rank
+		              from &quot;_SYS_BIC&quot;.&quot;sap.hana.democontent.epmNext.models/SALES_ORDER_RANKING&quot;
+		              where date_sql between :IP_FR_DTE and :IP_TO_DTE
+		              group by &quot;COMPANYNAME&quot; 
+		              order by sales_rank, &quot;COMPANYNAME&quot;
+		)                            
+		where sales_rank &lt; 11;   
+ 	 
+ 	 
+
+END /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="COMPANY_NAME" order="1">
+        <descriptions defaultDescription="COMPANY_NAME"/>
+        <keyMapping columnObjectName="Script_View" columnName="COMPANY_NAME"/>
+      </attribute>
+      <attribute id="SALES" order="2">
+        <descriptions defaultDescription="SALES"/>
+        <keyMapping columnObjectName="Script_View" columnName="SALES"/>
+      </attribute>
+      <attribute id="ORDERS" order="3">
+        <descriptions defaultDescription="ORDERS"/>
+        <keyMapping columnObjectName="Script_View" columnName="ORDERS"/>
+      </attribute>
+      <attribute id="SALES_RANK" order="4">
+        <descriptions defaultDescription="SALES_RANK"/>
+        <keyMapping columnObjectName="Script_View" columnName="SALES_RANK"/>
+      </attribute>
+      <attribute id="ORDER_RANK" order="5">
+        <descriptions defaultDescription="ORDER_RANK"/>
+        <keyMapping columnObjectName="Script_View" columnName="ORDER_RANK"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

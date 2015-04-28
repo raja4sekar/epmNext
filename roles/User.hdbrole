@@ -1,0 +1,22 @@
+role sap.hana.democontent.epmNext.roles::User extends role sap.hana.uis.db::SITE_USER, sap.hana.xs.admin.roles::HTTPDestViewer, sap.hana.xs.admin.roles::JobViewer, sap.hana.xs.ide.roles::Developer, sap.hana.xs.admin.roles::RuntimeConfAdministrator
+{
+schema sap.hana.democontent.epmNext.data:SAP_HANA_EPM_NEXT.hdbschema: CREATE ANY, EXECUTE, SELECT, INSERT, UPDATE, DELETE, DEBUG;
+catalog schema "_SYS_BI": SELECT;
+catalog schema "_SYS_BIC": SELECT, EXECUTE;
+catalog schema "_SYS_RT": SELECT;
+catalog schema "_SYS_REPO": SELECT;
+catalog sql object "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.models::SALES_ORDER_WORKLIST": SELECT;
+catalog sql object "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::SO.Item": REFERENCES;
+
+analytic privilege : sap.hana.democontent.epmNext.models:AP_PURCHASE_ORDER.analyticprivilege;
+analytic privilege : sap.hana.democontent.epmNext.models:AP_SALES_ORDER.analyticprivilege;
+analytic privilege : sap.hana.democontent.epmNext.spatial.models:SPATIAL.analyticprivilege;
+
+package sap.hana.democontent.epmNext: REPO.READ, REPO.EDIT_NATIVE_OBJECTS, REPO.ACTIVATE_NATIVE_OBJECTS, REPO.MAINTAIN_NATIVE_PACKAGES;
+
+application privilege: "sap.hana.democontent.epmNext::Basic";
+application privilege: "sap.hana.democontent.epmNext.ui.uis.FioriLaunchPad::WidgetAccess:FioriShineCatalog";
+application privilege: "sap.hana.democontent.epmNext.ui.uis.FioriLaunchPad::AppSiteAccess:FioriShineLaunchPad";
+--application privilege: "sap.hana.democontent.epmNext.ui.uis.site::AppSiteAccess:UISExample";
+
+}

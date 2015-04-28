@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="REGION_PRODUCT" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <descriptions defaultDescription="REGION_PRODUCT"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="sap.hana.democontent.epmNext.data::SO.Header" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_HANA_EPM_NEXT" columnObjectName="sap.hana.democontent.epmNext.data::SO.Header"/>
+    </DataSource>
+    <DataSource id="sap.hana.democontent.epmNext.data::SO.Item" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_HANA_EPM_NEXT" columnObjectName="sap.hana.democontent.epmNext.data::SO.Item"/>
+    </DataSource>
+    <DataSource id="sap.hana.democontent.epmNext.data::MD.BusinessPartner" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_HANA_EPM_NEXT" columnObjectName="sap.hana.democontent.epmNext.data::MD.BusinessPartner"/>
+    </DataSource>
+    <DataSource id="sap.hana.democontent.epmNext.data::MD.Addresses" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_HANA_EPM_NEXT" columnObjectName="sap.hana.democontent.epmNext.data::MD.Addresses"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:JoinView" id="SO" joinType="inner">
+      <viewAttributes>
+        <viewAttribute id="SALESORDERID_SALESORDERID"/>
+        <viewAttribute id="SALESORDERITEM"/>
+        <viewAttribute id="PRODUCTID_PRODUCTID"/>
+        <viewAttribute id="CURRENCY"/>
+        <viewAttribute id="GROSSAMOUNT"/>
+        <viewAttribute id="QUANTITY"/>
+        <viewAttribute id="QUANTITYUNIT"/>
+        <viewAttribute id="HISTORY_CREATEDAT"/>
+        <viewAttribute id="PARTNER_PARTNERID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#sap.hana.democontent.epmNext.data::SO.Header">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERID_SALESORDERID" source="SALESORDERID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CREATEDAT" source="HISTORY.CREATEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_PARTNERID" source="PARTNER.PARTNERID"/>
+      </input>
+      <input node="#sap.hana.democontent.epmNext.data::SO.Item">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERITEM" source="SALESORDERITEM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTID_PRODUCTID" source="PRODUCT.PRODUCTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GROSSAMOUNT" source="GROSSAMOUNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITYUNIT" source="QUANTITYUNIT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERID_SALESORDERID" source="SALESORDERID"/>
+      </input>
+      <joinAttribute name="SALESORDERID_SALESORDERID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="BP" joinType="inner">
+      <viewAttributes>
+        <viewAttribute id="SALESORDERID_SALESORDERID"/>
+        <viewAttribute id="SALESORDERITEM"/>
+        <viewAttribute id="PRODUCT_PRODUCTID"/>
+        <viewAttribute id="CURRENCY"/>
+        <viewAttribute id="GROSSAMOUNT"/>
+        <viewAttribute id="QUANTITY"/>
+        <viewAttribute id="QUANTITYUNIT"/>
+        <viewAttribute id="HISTORY_CREATEDAT"/>
+        <viewAttribute id="COMPANYNAME"/>
+        <viewAttribute id="LEGALFORM"/>
+        <viewAttribute id="ADDRESSES_ADDRESSID"/>
+        <viewAttribute hidden="true" id="JOIN$PARTNER_PARTNERID$PARTNERID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#SO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERID_SALESORDERID" source="SALESORDERID_SALESORDERID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERITEM" source="SALESORDERITEM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_PRODUCTID" source="PRODUCTID_PRODUCTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GROSSAMOUNT" source="GROSSAMOUNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITYUNIT" source="QUANTITYUNIT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CREATEDAT" source="HISTORY_CREATEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PARTNER_PARTNERID$PARTNERID" source="PARTNER_PARTNERID"/>
+      </input>
+      <input node="#sap.hana.democontent.epmNext.data::MD.BusinessPartner">
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMPANYNAME" source="COMPANYNAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGALFORM" source="LEGALFORM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRESSES_ADDRESSID" source="ADDRESSES.ADDRESSID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PARTNER_PARTNERID$PARTNERID" source="PARTNERID"/>
+      </input>
+      <joinAttribute name="JOIN$PARTNER_PARTNERID$PARTNERID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Address" joinType="inner">
+      <viewAttributes>
+        <viewAttribute id="SALESORDERID_SALESORDERID"/>
+        <viewAttribute id="SALESORDERITEM"/>
+        <viewAttribute id="PRODUCT_PRODUCTID"/>
+        <viewAttribute id="CURRENCY"/>
+        <viewAttribute id="GROSSAMOUNT"/>
+        <viewAttribute id="QUANTITY"/>
+        <viewAttribute id="QUANTITYUNIT"/>
+        <viewAttribute id="HISTORY_CREATEDAT"/>
+        <viewAttribute id="COMPANYNAME"/>
+        <viewAttribute id="LEGALFORM"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="POSTALCODE"/>
+        <viewAttribute id="STREET"/>
+        <viewAttribute id="BUILDING"/>
+        <viewAttribute id="COUNTRY"/>
+        <viewAttribute id="REGION"/>
+        <viewAttribute id="LATITUDE"/>
+        <viewAttribute id="LONGITUDE"/>
+        <viewAttribute hidden="true" id="JOIN$ADDRESSES_ADDRESSID$ADDRESSID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#BP">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERID_SALESORDERID" source="SALESORDERID_SALESORDERID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERITEM" source="SALESORDERITEM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_PRODUCTID" source="PRODUCT_PRODUCTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GROSSAMOUNT" source="GROSSAMOUNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITYUNIT" source="QUANTITYUNIT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CREATEDAT" source="HISTORY_CREATEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMPANYNAME" source="COMPANYNAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEGALFORM" source="LEGALFORM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRESSES_ADDRESSID$ADDRESSID" source="ADDRESSES_ADDRESSID"/>
+      </input>
+      <input node="#sap.hana.democontent.epmNext.data::MD.Addresses">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POSTALCODE" source="POSTALCODE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STREET" source="STREET"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUILDING" source="BUILDING"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LATITUDE" source="LATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LONGITUDE" source="LONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRESSES_ADDRESSID$ADDRESSID" source="ADDRESSID"/>
+      </input>
+      <joinAttribute name="JOIN$ADDRESSES_ADDRESSID$ADDRESSID"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Address">
+    <attributes>
+      <attribute id="SALESORDERID_SALESORDERID" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SALESORDERID"/>
+        <keyMapping columnObjectName="Address" columnName="SALESORDERID_SALESORDERID"/>
+      </attribute>
+      <attribute id="SALESORDERITEM" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SALESORDERITEM"/>
+        <keyMapping columnObjectName="Address" columnName="SALESORDERITEM"/>
+      </attribute>
+      <attribute id="PRODUCTID_PRODUCTID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PRODUCT_PRODUCTID"/>
+        <keyMapping columnObjectName="Address" columnName="PRODUCT_PRODUCTID"/>
+      </attribute>
+      <attribute id="CURRENCY" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CURRENCY"/>
+        <keyMapping columnObjectName="Address" columnName="CURRENCY"/>
+      </attribute>
+      <attribute id="GROSSAMOUNT" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GROSSAMOUNT"/>
+        <keyMapping columnObjectName="Address" columnName="GROSSAMOUNT"/>
+      </attribute>
+      <attribute id="QUANTITY" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="QUANTITY"/>
+        <keyMapping columnObjectName="Address" columnName="QUANTITY"/>
+      </attribute>
+      <attribute id="QUANTITYUNIT" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="QUANTITYUNIT"/>
+        <keyMapping columnObjectName="Address" columnName="QUANTITYUNIT"/>
+      </attribute>
+      <attribute id="HISTORY_CREATEDAT" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HISTORY_CREATEDAT"/>
+        <keyMapping columnObjectName="Address" columnName="HISTORY_CREATEDAT"/>
+      </attribute>
+      <attribute id="COMPANYNAME" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COMPANYNAME"/>
+        <keyMapping columnObjectName="Address" columnName="COMPANYNAME"/>
+      </attribute>
+      <attribute id="LEGALFORM" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEGALFORM"/>
+        <keyMapping columnObjectName="Address" columnName="LEGALFORM"/>
+      </attribute>
+      <attribute id="CITY" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CITY"/>
+        <keyMapping columnObjectName="Address" columnName="CITY"/>
+      </attribute>
+      <attribute id="POSTALCODE" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="POSTALCODE"/>
+        <keyMapping columnObjectName="Address" columnName="POSTALCODE"/>
+      </attribute>
+      <attribute id="STREET" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STREET"/>
+        <keyMapping columnObjectName="Address" columnName="STREET"/>
+      </attribute>
+      <attribute id="BUILDING" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BUILDING"/>
+        <keyMapping columnObjectName="Address" columnName="BUILDING"/>
+      </attribute>
+      <attribute id="COUNTRY" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COUNTRY"/>
+        <keyMapping columnObjectName="Address" columnName="COUNTRY"/>
+      </attribute>
+      <attribute id="REGION" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="REGION"/>
+        <keyMapping columnObjectName="Address" columnName="REGION"/>
+      </attribute>
+      <attribute id="LATITUDE" order="17" semanticType="geoLocation.latitude" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LATITUDE"/>
+        <keyMapping columnObjectName="Address" columnName="LATITUDE"/>
+      </attribute>
+      <attribute id="LONGITUDE" order="18" semanticType="geoLocation.longitude" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LONGITUDE"/>
+        <keyMapping columnObjectName="Address" columnName="LONGITUDE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="SO" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="360"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="BP" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="260"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Address" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="170"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

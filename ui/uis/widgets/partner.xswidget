@@ -1,0 +1,64 @@
+{
+    "name": "Partner Catalog Sample",
+    "type": "fiori",
+    "widgets": [
+        {
+            "type": "chips.tiles.applauncherdynamic.DynamicTile",
+            "ID": "21b3a729-4068-4311-9d7c-782f161eff75-1409855262242",
+            "properties": [
+                {
+                    "key": "display_icon_url",
+                    "value": ""
+                },
+                {
+                    "key": "display_title_text",
+                    "value": "Business Partners (Buyers)"
+                },
+                {
+                    "key": "display_subtitle_text",
+                    "value": "Sample"
+                },
+                {
+                    "key": "display_info_text",
+                    "value": ""
+                },
+                {
+                    "key": "display_number_unit",
+                    "value": "Buyers"
+                },
+                {
+                    "key": "service_url",
+                    "value": "/sap/hana/democontent/epmNext/services/businessPartners2.xsodata/Buyer/$count"
+                },
+                {
+                    "key": "service_refresh_interval",
+                    "value": "10"
+                },
+                {
+                    "key": "navigation_use_semantic_object",
+                    "value": "false"
+                },
+                {
+                    "key": "navigation_target_url",
+                    "value": "/sap/hana/democontent/epmNext/ui/partners/"
+                },
+                {
+                    "key": "navigation_semantic_object",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_action",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_parameters",
+                    "value": ""
+                },
+                {
+                    "key": "display_search_keywords",
+                    "value": ""
+                }
+            ]
+        }
+    ]
+}

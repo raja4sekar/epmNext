@@ -1,0 +1,52 @@
+import = [
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Conversions.T006";
+                file = "sap.hana.democontent.epmNext.data.loads:T006.csv";
+                header = false;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Conversions.T006A";
+                file = "sap.hana.democontent.epmNext.data.loads:T006A.csv";
+                header = false;
+            }, 
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Conversions.TCURC";
+                file = "sap.hana.democontent.epmNext.data.loads:TCURC.csv";
+                header = false;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Conversions.TCURF";
+                file = "sap.hana.democontent.epmNext.data.loads:TCURF.csv";
+                header = false;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Conversions.TCURN";
+                file = "sap.hana.democontent.epmNext.data.loads:TCURN.csv"; 
+                header = false;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Conversions.TCURR";
+                file = "sap.hana.democontent.epmNext.data.loads:TCURR.csv";
+                header = false;
+            }, 
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Conversions.TCURT";
+                file = "sap.hana.democontent.epmNext.data.loads:TCURT.csv";
+                header = false;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Conversions.TCURV";
+                file = "sap.hana.democontent.epmNext.data.loads:TCURV.csv";
+                header = false;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Conversions.TCURW";
+                file = "sap.hana.democontent.epmNext.data.loads:TCURW.csv";
+                header = false;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Conversions.TCURX";
+                file = "sap.hana.democontent.epmNext.data.loads:TCURX.csv";
+                header = false;
+            }                                                                          
+         ];

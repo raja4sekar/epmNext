@@ -1,0 +1,103 @@
+<div data-template class="product">
+    <table>
+        <tr>
+            <td>
+                <div class="product_img">
+                    <img src="" data-src="../../data/images/{{PRODUCTID.value}}.jpg" alt="{{THUMBNAIL.label}}"/>
+                </div>
+            </td>
+            <td>	
+               <table>
+		          <tr>
+                    <td>
+                       <table>
+                          <tr>
+                             <td>
+                                <span class="product_title margin_big">{{SALESORDERID.label}} {{SALESORDERID.value}}</span>
+                             </td>
+                          </tr>
+                          <tr>
+                             <td class="attributeName"><div class="margin_big">
+                                {{PRODUCTID.label}}
+                                </div>
+                             </td>
+                             <td class="attributeValue">
+                                {{PRODUCTID.value}}
+                             </td>
+                           </tr>
+                          <tr>
+                             <td class="attributeName"><div class="margin_big">
+                                {{PRODUCTNAME.label}}
+                                </div>
+                             </td>
+                             <td class="attributeValue">
+                                {{PRODUCTNAME.value}}
+                             </td>
+                           </tr>
+                          <tr>
+                             <td class="attributeName"><div class="margin_big">
+                                {{PRODUCTDESC.label}}
+                                </div>
+                             </td>
+                             <td class="attributeValue">
+                                {{PRODUCTDESC.value}}
+                             </td>
+                           </tr>                                                      
+                           <tr>
+                              <td class="attributeName"><div class="margin_big">
+                                {{GROSSAMOUNT.label}}
+                                </div>
+                              </td>
+                              <td class="attributeValue">
+                                {{GROSSAMOUNT.value}} {{CURRENCY.value}}
+                              </td>
+                           </tr>
+
+                        </table>
+                     </td>
+                   </tr>
+                </table>
+            </td>
+            <td>
+               <table>
+                  <tr>
+                     <td class="attributeName">
+                        {{COMPANYNAME.label}}
+                     </td>
+                     <td class="attributeValue">
+                        {{COMPANYNAME.value}} 
+                     </td>
+                  </tr>
+	               <tr>
+	                 <td class="attributeName"><div class="margin_big">
+	                    {{CITY.label}}
+	                    </div>
+	                 </td>
+	                 <td class="attributeValue">
+	                    {{CITY.value}}
+	                 </td>
+	               </tr>                  
+
+                  <tr>
+                     <td class="attributeName">
+                          {{PARTNERID.label}}
+                     </td>
+                     <td class="attributeValue">
+                        {{PARTNERID.value}}
+                     </td>
+		          </tr>
+		          <tr>
+			           <td class="attributeName">
+				          {{QUANTITY.label}}
+			           </td>
+			           <td class="attributeValue">
+				          {{QUANTITY.value}}
+			           </td>
+                   </tr>
+
+               </table>
+           </td>
+		</tr>
+	</table>
+</div>
+<div data-template-fallback>Sorry, JavaScript required!</div>

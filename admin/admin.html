@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="UTF-8">
+	
+	<title>Data Generator</title>
+             
+              <style>
+                    .helpButton{
+                        font-weight: bold;
+                        float: right;
+                    }
+                    /* help dialog */
+                    .welcomeDlg {
+                        background-color: #FFFFFF !important;
+                    }
+                    .welcomeDlg .sapUiDlgHdr {
+                        border-bottom: 0px solid #FFFFFF !important;
+                    }
+                    .welcomeDlg .sapUiDlgCont {
+                        background-color: #FFFFFF !important;
+                        padding: 10px 25px 12px;
+                    }
+                    .welcomeHeaderTextAlign {
+                        font-size: 22px !important;
+                        padding-left: 5px;
+                    }        
+                    .dialogTextColor{
+                        color: #007CC0 !important;
+                    }
+                    .content {
+  						margin: 0.5em 0 0.5em 0.5em;
+  					}
+              </style>	
+   		<link type="image/x-icon" href="/sap/hana/democontent/epmNext/ui/images/favicon.ico" rel="shortcut icon">
+        <link type="image/x-icon" href="/sap/hana/democontent/epmNext/ui/images/favicon.ico" rel="icon"> 
+	
+	<script id="sap-ui-bootstrap" 
+		src="/sap/ui5/1/resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-libs="sap.m, sap.me, sap.ui.unified, sap.viz, sap.ui.layout">
+	</script>
+	<script type="text/javascript" src="./ui/global.js" ></script> 
+	<script>
+	
+		// Tell UI5 where to find app content
+		sap.ui.localResources("ui");
+		jQuery.sap.registerModulePath('Application', 'Application');
+
+		// instantiate app and let UI be rendered into 'content' html tag
+		jQuery.sap.require("Application");
+		var oApp = new Application({root : "content"});
+
+		$.ajaxSetup({
+		    complete: function(xhr,textStatus) {
+		        var loginPage = xhr.getResponseHeader("x-sap-login-page");
+		        if (loginPage) {
+		            location.href = loginPage + "?x-sap-origin-location=" + encodeURIComponent(window.location.pathname);
+		        }
+		    }
+		});
+		
+//		jQuery.sap.registerModulePath('app', 'ui');
+
+        jQuery.sap.require("ui.tileDialog");		
+	</script>
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>

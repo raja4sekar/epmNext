@@ -1,0 +1,6 @@
+//calls the Procedure "soDelete" to delete the Sales Order record based on the selected SalesOrder ID and exposes response as OData
+service namespace "sap.hana.democontent.epmNext.services" {
+   "sap.hana.democontent.epmNext.data::SO.Header" as "so_details"
+    delete using "sap.hana.democontent.epmNext.procedures::soDelete";
+         
+}

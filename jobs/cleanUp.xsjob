@@ -1,0 +1,6 @@
+{ 
+	"description": "Clean Up Old Cookies", 
+	"action": "sap.hana.democontent.epmNext.procedures::clean_up_old_cookies", 
+	"schedules": [ { 
+	   "description": "Will run once a day at 2:00am", 
+	   "xscron": "* * * * 2 0 0" } ]}

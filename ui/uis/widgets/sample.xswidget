@@ -1,0 +1,6 @@
+{
+"name" : "Sample Widget",
+"specXMLURL" : "/sap/hana/democontent/epmNext/ui/uis/xml/sample.xml" ,
+"description": "",
+"icon" : ""
+}

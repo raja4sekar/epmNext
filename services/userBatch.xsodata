@@ -1,0 +1,6 @@
+service namespace "sap.hana.democontent.epm"  { 
+   "sap.hana.democontent.epmNext.data::User.Details" as "Users"
+    create using "sap.hana.democontent.epmNext.services:useridUpdate.xsjslib::my_create_after_exit";
+}
+   
+ 

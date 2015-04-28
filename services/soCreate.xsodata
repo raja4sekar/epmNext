@@ -1,0 +1,4 @@
+service namespace "sap.hana.democontent.epmNext.services" {
+   "sap.hana.democontent.epmNext.data::SO.Item" as "salesDetails"
+    create using "sap.hana.democontent.epmNext.procedures::soCreate";
+}

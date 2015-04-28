@@ -1,0 +1,38 @@
+service namespace "sap.hana.democontent.epmNext.services" { 
+
+	"sap.hana.democontent.epmNext.models::PO_HEADER" 
+	as "PurchaseOrderCollection"
+	keys ("PURCHASEORDERID")
+	navigates ("PO_Supplier" as "Supplier", "PO_Notes" as "Notes", 
+	           "PO_Attachments" as "Attachments", "PO_Item" as "PurchaseOrder_Items");
+	
+	"sap.hana.democontent.epmNext.data::MD.BuyerView"
+	as "Supplier"
+	keys ("Id");
+
+	"sap.hana.democontent.epmNext.data::Util.NotesView"
+	as "Notes"
+	keys ("NOTEID");
+	
+	"sap.hana.democontent.epmNext.data::Util.AttachementsView"
+	as "Attachments"
+	keys ("NOTEID");
+	
+	"sap.hana.democontent.epmNext.models::PO_ITEM"
+	as "PurchaseOrder_Items"
+	keys ("PURCHASEORDERID","PURCHASEORDERITEM")
+	navigates ("PO_Item" as "PurchaseOrder_Items");
+	
+	association "PO_Supplier" principal "PurchaseOrderCollection"("PARTNER_PARTNERID") 
+     multiplicity "1" dependent "Supplier"("Id") multiplicity "1";
+	
+	association "PO_Item" principal "PurchaseOrderCollection"("PURCHASEORDERID") 
+     multiplicity "1" dependent "PurchaseOrder_Items"("PURCHASEORDERID") multiplicity "*"; 
+     
+	association "PO_Notes" principal "PurchaseOrderCollection"("NOTEID") 
+     multiplicity "1" dependent "Notes"("LINKID") multiplicity "*"; 
+     
+	association "PO_Attachments" principal "PurchaseOrderCollection"("NOTEID") 
+     multiplicity "1" dependent "Attachments"("LINKID") multiplicity "*";      
+          
+}

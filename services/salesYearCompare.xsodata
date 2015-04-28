@@ -1,0 +1,7 @@
+service namespace "sap.hana.democontent.epmNext"  { 
+   "sap.hana.democontent.epmNext.models::SALES_YEAR_COMPARISON" 
+    as "salesYear"  
+	keys generate local "ID"
+    aggregates always
+    parameters via entity "InputParams";	  
+}

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="PRODUCT_SALE_PRICE" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true">
+  <descriptions defaultDescription="PRODUCT_SALE_PRICE"/>
+  <localVariables>
+    <variable id="PRODUCT_ID" parameter="true">
+      <descriptions defaultDescription="Product ID&#xD;&#xA;"/>
+      <variableProperties datatype="NVARCHAR" length="10" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute datatype="NVARCHAR" id="PRODUCTID" length="10"/>
+        <viewAttribute datatype="NVARCHAR" id="CATEGORY" length="40"/>
+        <viewAttribute datatype="DECIMAL" id="PRICE" length="15" scale="2"/>
+        <viewAttribute datatype="DECIMAL" id="SALEPRICE" length="15" scale="2"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <localVariable>#PRODUCT_ID</localVariable>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 
+declare lv_category nvarchar(40) := null;
+declare lv_discount decimal(15,2) := 0; 
+ 
+lt_product = select PRODUCTID, CATEGORY, PRICE 
+                 from &quot;sap.hana.democontent.epmNext.data::MD.Products&quot;
+                   	     where PRODUCTID = :PRODUCT_ID;  
+
+select CATEGORY into lv_category from :lt_product; 
+ 
+if :lv_category = 'Notebooks' then
+  	 lv_discount := .20;
+elseif :lv_category = 'Handhelds' then
+   	 lv_discount := .25;
+elseif :lv_category = 'Flat screens' then
+   	 lv_discount := .30;
+elseif :lv_category like '%printers%' then
+     lv_discount := .30;
+else
+     lv_discount := 0.00;  -- No discount
+end if;
+
+var_out = 
+        select PRODUCTID, CATEGORY, PRICE,
+           	 PRICE - cast((PRICE * :lv_discount) as decimal(15,2)) as &quot;SALEPRICE&quot;
+                         from :lt_product;    
+                         
+                          
+
+END /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="PRODUCTID" order="1">
+        <descriptions defaultDescription="PRODUCTID"/>
+        <keyMapping columnObjectName="Script_View" columnName="PRODUCTID"/>
+      </attribute>
+      <attribute id="CATEGORY" order="2">
+        <descriptions defaultDescription="CATEGORY"/>
+        <keyMapping columnObjectName="Script_View" columnName="CATEGORY"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="PRICE" order="3" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="PRICE"/>
+        <measureMapping columnObjectName="Script_View" columnName="PRICE"/>
+      </measure>
+      <measure id="SALEPRICE" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="SALEPRICE"/>
+        <measureMapping columnObjectName="Script_View" columnName="SALEPRICE"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

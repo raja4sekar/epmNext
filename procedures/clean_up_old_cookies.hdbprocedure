@@ -1,0 +1,10 @@
+PROCEDURE "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.procedures::clean_up_old_cookies" ( ) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY DEFINER AS
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+  	DELETE FROM "sap.hana.democontent.epmNext.data::Util.SSCOOKIE"
+	 WHERE EXPIRY <= now(); 
+END;

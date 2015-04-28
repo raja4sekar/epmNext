@@ -1,0 +1,17 @@
+namespace sap.hana.democontent.epmNext.data;
+
+using sap.hana.democontent.epmNext.data::EPM;
+
+@Schema: 'SAP_HANA_EPM_NEXT'
+context User {
+
+@Catalog.tableType: #COLUMN
+     Entity Details {
+     	key PERS_NO: String(10);
+     	FIRSTNAME: EPM.SString;
+     	LASTNAME: EPM.SString;
+     	E_MAIL: EPM.LString;
+     };	
+    
+
+};

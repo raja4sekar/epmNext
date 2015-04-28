@@ -1,0 +1,10 @@
+import = [
+            
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Util.Messages";
+                file = "sap.hana.democontent.epmNext.data.loads:messages.csv";
+                header = true;
+                useHeaderNames = true;                
+            }
+            
+       ];

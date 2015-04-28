@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Privilege:analyticPrivilege xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" schemaVersion="1.1" id="AP_SALES_ORDER">
+  <descriptions defaultDescription="AP_SALES_ORDER"/>
+  <securedModels allInformationModels="false">
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/BUYER</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/PROD</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/PRODUCT</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/PRODUCT_SALE_PRICE</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALES_DETAILS</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALES_ORDER_DYNAMIC_TIME_PERIOD</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALES_ORDER_LITE</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALES_ORDER_RANKING</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALES_ORDER_RANKING_AND_DISCOUNT_SQL</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALES_ORDER_WORKLIST</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALES_OVERVIEW_WO_CURR_CONV</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALES_YEAR_COMPARISON</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALESORDER_BASKET_ANALYSIS</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALESORDER_DYNAMIC_JOIN</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALESORDER_RANKING</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/SALESORDER_RANKING_SQL</modelUri>
+  </securedModels>
+</Privilege:analyticPrivilege>

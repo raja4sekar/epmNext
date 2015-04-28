@@ -1,0 +1,15 @@
+service namespace "sap.hana.democontent.epmNext.spatial.services" {
+
+    "sap.hana.democontent.epmNext.models::PROD" as "ProductDetails" 
+    keys ("PRODUCTID");
+
+	"sap.hana.democontent.epmNext.spatial.models::REGION_PRODUCT" as "ProductRegionQuantity" 
+	with ("SALESORDERID_SALESORDERID", "SALESORDERITEM", "LATITUDE", "LONGITUDE", "QUANTITY", "PRODUCTID_PRODUCTID")
+	keys ("SALESORDERID_SALESORDERID", "SALESORDERITEM"); 
+	
+	"sap.hana.democontent.epmNext.spatial.models::PRODUCT_SALES" as "ProductSales"
+	with ("PRODUCTID_PRODUCTID", "YEAR_OF_SALE", "GROSSAMOUNT_1")
+	keys generate local "ID"
+	aggregates always;
+
+}

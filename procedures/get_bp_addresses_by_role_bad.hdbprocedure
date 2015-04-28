@@ -1,0 +1,64 @@
+PROCEDURE SAP_HANA_EPM_NEXT."sap.hana.democontent.epmNext.procedures::get_bp_addresses_by_role_bad" (
+                       IN im_partnerrole NVARCHAR(3) DEFAULT '01', 
+                       OUT ex_bp_addresses SAP_HANA_EPM_NEXT."sap.hana.democontent.epmNext.data::Procedures.tt_bp_addresses_ext" ) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	DEFAULT SCHEMA SAP_HANA_EPM_NEXT
+	READS SQL DATA AS
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+declare DISCOUNT decimal(15,2) array;
+  	declare PARTNERID NVARCHAR(10) array;
+    declare PARTNERROLE nvarchar(3) array;
+    declare EMAILADDRESS nvarchar(255) array;
+    declare COMPANYNAME nvarchar(80) array;
+    declare ADDRESSID NVARCHAR(10) array;
+    declare CITY nvarchar(40) array;
+    declare POSTALCODE nvarchar(10) array;
+    declare STREET nvarchar(60) array;  
+    declare REGION nvarchar(4) array;
+    declare i integer := 1;
+    
+    declare cursor c_bp for
+	   select a."PARTNERID", a."PARTNERROLE", a."EMAILADDRESS", a."COMPANYNAME",
+            a."ADDRESSES.ADDRESSID" as "ADDRESSID", b."CITY", b."POSTALCODE", b."STREET", b."REGION", 
+              (select * from dummy) as DISCOUNT              
+              from "sap.hana.democontent.epmNext.data::MD.BusinessPartner" as a 
+                 inner join "sap.hana.democontent.epmNext.data::MD.Addresses" as b
+                     on a."ADDRESSES.ADDRESSID" = b."ADDRESSID" 
+                              where a."PARTNERROLE" = :im_partnerrole;
+    
+                          
+                         
+ 	FOR cur_row as c_bp DO
+	  IF cur_row.region = 'EMEA' THEN
+ 		DISCOUNT[:i] := 0.15;
+   	  ELSEIF cur_row.region = 'AMER' THEN
+ 		DISCOUNT[:i] := 0.12;
+      ELSEIF cur_row.region = 'APJ' THEN
+ 		DISCOUNT[:i] := 0.18;
+      ELSEIF cur_row.region = 'AFR' THEN
+ 		DISCOUNT[:i] := 0.20; 	
+ 	  END IF;	
+ 	   PARTNERID[:i] := cur_row.partnerid;
+ 	   PARTNERROLE[:i] := cur_row.partnerrole;
+ 	   EMAILADDRESS[:i] := cur_row.emailaddress;
+ 	   COMPANYNAME[:i] := cur_row.companyname;
+ 	   ADDRESSID[:i] := cur_row.addressid;
+ 	   CITY[:i] := cur_row.city;
+ 	   POSTALCODE[:i] := cur_row.postalcode;
+ 	   STREET[:i] := cur_row.street;
+ 	   REGION[:i] := cur_row.region;
+ 	  i := :i + 1;		 
+ 	END FOR;
+   	
+ 	 ex_bp_addresses = UNNEST(:partnerid, :partnerrole, :emailaddress, :companyname,
+ 	                           :addressid, :city, :postalcode, :street, :region,
+ 	                           :discount)
+ 	                   AS (PARTNERID, PARTNERROLE, EMAILADDRESS, COMPANYNAME,
+ 	                       ADDRESSID, CITY, POSTALCODE, STREET, REGION, DISCOUNT);
+
+END;
+

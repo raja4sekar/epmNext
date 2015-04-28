@@ -1,0 +1,6 @@
+service namespace "sap.hana.democontent.epmNext"  { 
+   "sap.hana.democontent.epmNext.models::SALESORDER_RANKING" 
+    as "salesRank"  
+	keys generate local "ID" 
+    aggregates always;
+}

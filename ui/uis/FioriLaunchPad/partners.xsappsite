@@ -1,0 +1,30 @@
+{
+    "layout": "{\"pagesOrder\":[\"Default\"]}",
+    "description": "Business Partners Sample",
+    "pages": [
+        {
+            "layout": "{\"appsOrder\":[\"e360daa1-6c9b-463b-9e53-257ed4e8a224-1409855416479\"]}",
+            "layoutRef": "Default",
+            "name": "Business Partners Sample",
+            "ID": "Default"
+        }
+    ],
+    "apps": [
+        {
+            "layoutRef": "e360daa1-6c9b-463b-9e53-257ed4e8a224-1409855416479",
+            "containerID": "Default",
+            "appTemplateID": "21b3a729-4068-4311-9d7c-782f161eff75-1409855262242",
+            "appTemplatePackageID": "sap.hana.democontent.epmNext.ui.uis.widgets",
+            "appTemplateObjectName": "partner",
+            "ID": "e360daa1-6c9b-463b-9e53-257ed4e8a224-1409855416479",
+            "type": "local"
+        }
+    ],
+    "properties": [
+        {
+            "key": "sap.hana.uis.site.type",
+            "value": "fiori"
+        }
+    ],
+    "name": "Business Partners Sample"
+}

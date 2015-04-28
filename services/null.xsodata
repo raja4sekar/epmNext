@@ -1,0 +1,9 @@
+service  {
+    "sap.hana.democontent.epmNext.data::PO.Header"
+	as "Header"; 
+
+}
+
+settings {
+  support null;
+}

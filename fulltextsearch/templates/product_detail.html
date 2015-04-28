@@ -1,0 +1,76 @@
+<span>
+<div data-template class="product_detail">
+<table>
+<tr>
+<td>
+    <table class="product_detail_header">
+        <tr>
+	       <td>
+              <div class="product_detail_img">
+                  <img width=200px height=200px src="../../data/images/{{THUMBNAIL}}" alt="{{THUMBNAIL}}"/>
+              </div>
+	       </td>
+        </tr>
+    </table>
+</td>
+<td>
+    <table class="product_detail_body">
+        <caption class="product_detail_title">{{SALESORDERID.label}} {{SALESORDERID.value}}</caption>
+		<tr>
+			<td class="attributeName_detail">
+				CompanyName
+			</td>
+			<td class="attributeValue_detail">
+			    {{COMPANYNAME}}
+			</td>
+        </tr>
+        <tr>
+			<td class="attributeName_detail">
+				PartnerId
+			</td>
+			<td class="attributeValue_detail">
+				{{PARTNERID}}
+			</td>
+		</tr>
+		<tr>
+            <td class="attributeName_detail">
+                ProductId
+            </td>
+            <td class="attributeValue_detail">
+                {{PRODUCTID}}
+            </td>
+        </tr>
+        <tr>
+			<td class="attributeName_detail">
+				ProductName
+			</td>
+			<td class="attributeValue_detail">
+				{{PRODUCTNAME}}
+			</td>
+		</tr>
+		<tr>
+			<td class="attributeName_detail">
+				Quantity
+			</td>
+			<td class="attributeValue_detail">
+				{{QUANTITY}}
+			</td>
+        </tr>
+        <tr>
+			<td class="attributeName_detail">
+				GrossAmount
+			</td>
+			<td class="attributeValue_detail">
+				{{GROSSAMOUNT}} {{CURRENCY}}
+			</td>
+		</tr>
+	</table>
+ </td>
+ </tr>
+ </table>
+ <p class="attributeValue_detail">
+ 	{{PRODUCTDESC}}
+ </p>
+</div>
+<div data-template-fallback>Sorry, JavaScript required!</div>
+</span>

@@ -1,0 +1,11 @@
+{
+    "exposed": true,
+    "default_file": "admin.html",
+    "authentication": [{
+        "method": "LogonTicket"
+    }, {
+        "method": "Form"
+    }],
+    "authorization": ["sap.hana.democontent.epmNext::Admin"],
+    "cache_control": "must-revalidate"
+}

@@ -1,0 +1,5 @@
+service namespace "sap.hana.democontent.epmNext"  { 
+
+   "sap.hana.democontent.epmNext.models::PROD" as "ProductDetails" 
+   keys ("PRODUCTID");
+}

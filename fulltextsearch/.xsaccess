@@ -1,0 +1,6 @@
+{
+	"exposed": true,
+	"enable_etags" : true,          
+	"cors" : [{ "enabled":false }],
+	"prevent_xsrf" : false          
+}

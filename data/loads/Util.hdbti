@@ -1,0 +1,26 @@
+import = [
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Util.Constants";
+                file = "sap.hana.democontent.epmNext.data.loads:constants.csv";
+                header = true;
+                useHeaderNames = true;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Util.Texts";
+                file = "sap.hana.democontent.epmNext.data.loads:texts.csv";
+                header = true;
+                useHeaderNames = true;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Util.Notes";
+                file = "sap.hana.democontent.epmNext.data.loads:notes.csv";  
+                header = true;
+                useHeaderNames = true;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::Util.Attachments";
+                file = "sap.hana.democontent.epmNext.data.loads:attachments.csv";  
+                header = true;
+                useHeaderNames = true; 
+            }      
+       ];

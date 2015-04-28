@@ -1,0 +1,6 @@
+{
+"name" : "Simple Label",
+"specXMLURL" : "/sap/hana/democontent/epmNext/ui/uis/xml/simple_label.xml" ,
+"description": "",
+"icon" : ""
+}

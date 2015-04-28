@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+		<title>Business Partners</title>
+		<script id="sap-ui-bootstrap" type="text/javascript"
+			src="/sap/ui5/1/resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-xx-bindingSyntax="complex"
+			data-sap-ui-libs="sap.m">
+		</script>
+		<script>
+			
+			// tell UI5 where to find stuff
+			sap.ui.localResources("view");
+			jQuery.sap.registerModulePath('Application', 'Application');
+			
+			// launch application
+			jQuery.sap.require("Application");
+			var oApp = new Application({root : "content"});
+			
+		</script>
+	</head>
+	<body class="sapUiBody" id="content">
+	</body>
+</html>

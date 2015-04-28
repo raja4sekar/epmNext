@@ -1,0 +1,139 @@
+PROCEDURE "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.procedures::insert_product_data" (
+        in im_product nvarchar(10),
+        in im_category nvarchar(40),
+        in im_price decimal(15,2),
+        out ex_message nvarchar(200) )
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	--DEFAULT SCHEMA <default_schema_name>
+	 AS
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+
+/***************************** 
+	User defined condition declaration.  Error code 10001 is associated with this condition and 
+	the following exit handler will simply export the message text as output parameter
+ *****************************/
+DECLARE lcon_10001 CONDITION FOR SQL_ERROR_CODE 10001;  
+DECLARE EXIT HANDLER FOR lcon_10001    -- RESIGNAL
+BEGIN
+  ex_message :=  'Error Code: ' || ::SQL_ERROR_CODE || ' ' || ::SQL_ERROR_MESSAGE; 
+END;
+
+/***************************** 
+	Generic exit handler for sql exceptions, build message variable and write to productLog table
+	using autonomous transaction, and resignal error to the caller
+ *****************************/
+DECLARE EXIT HANDLER FOR SQLEXCEPTION   -- SQL_ERROR_CODE 301
+BEGIN
+ ex_message := 'SQL Exception occurred!! ' || ::SQL_ERROR_CODE || ' ' || ::SQL_ERROR_MESSAGE; 
+ BEGIN AUTONOMOUS TRANSACTION
+  INSERT INTO "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+           VALUES(:im_product,  
+                 (select IFNULL(MAX(logid), 0) + 1
+                     from "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+                      where productid = :im_product),
+                  now(), CURRENT_USER, ex_message );
+
+  COMMIT;
+  RESIGNAL;
+ END;
+END;
+
+/***************************** 
+	Start of logging entries, and data validation checks, use of antonomous transaction to ensure
+	logging data is written to the log
+ *****************************/
+BEGIN AUTONOMOUS TRANSACTION
+  INSERT INTO "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+           VALUES(:im_product, 
+                 (select IFNULL(MAX(logid), 0) + 1  
+                    from "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+                      where productid = :im_product),
+                  now(), CURRENT_USER, 'Begin of product insertion');
+  INSERT INTO "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+           VALUES(:im_product, 
+                 (select IFNULL(MAX(logid), 0) + 1 
+                    from "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+                      where productid = :im_product),
+                  now(), CURRENT_USER, 'Begin of product data validation checks');
+  COMMIT;
+
+/***************************** 
+	Perform input parameter checks
+ *****************************/
+  if :im_product = ' ' then
+     INSERT INTO "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+           VALUES(im_product, 
+                 (select IFNULL(MAX(logid), 0) + 1 
+                    from "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+                      where productid = im_product),
+                 now(), CURRENT_USER, 'Product data validation checks failed, Product ID can not be empty');
+     COMMIT;  
+     SIGNAL lcon_10001 SET MESSAGE_TEXT = 'Product Id can not be empty';  
+  end if;
+
+  if :im_category = ' ' then
+     INSERT INTO "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+           VALUES(:im_product, 
+                 (select IFNULL(MAX(logid), 0) + 1 
+                    from "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+                      where productid = :im_product),
+                 now(), CURRENT_USER, 'Product data validation checks failed, Category can not be empty');
+     COMMIT;  
+     SIGNAL lcon_10001 SET MESSAGE_TEXT = 'Category can not be empty';  
+  end if;
+  
+  if :im_price = 0 then
+     INSERT INTO "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+           VALUES(:im_product, 
+                 (select IFNULL(MAX(logid), 0) + 1 
+                    from "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+                      where productid = :im_product),
+                 now(), CURRENT_USER, 'Product data validation checks failed, Price can not be zero');
+     COMMIT;  
+     SIGNAL lcon_10001 SET MESSAGE_TEXT = 'Price can not be zero';  
+  end if;
+
+  INSERT INTO "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+           VALUES(:im_product,  
+                 (select IFNULL(MAX(logid), 0) + 1 
+                    from "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+                      where productid = :im_product),
+                  now(), CURRENT_USER, 'Product data validation checks passed successfully');
+  COMMIT;
+END;
+ 
+/***************************** 
+	Checks passed, insert new product record with most columns hardcoded dummy data
+ *****************************/
+INSERT into "sap.hana.democontent.epmNext.data::MD.Products" 
+          values( :im_product, 'PR', :im_category, '0000000033', '20121003', '0000000033', '20121003',
+                  '1000000149', '1000000150', '0100000029', 1, 'EA', 0.5, 'KG', 'CAD', :im_price,
+                  '/sap/hana/democontent/epmSP6/data/images/HT-7030.jpg',
+                  0.09, 0.15, 0.1, 'M');
+
+/***************************** 
+	Finally, update log with completion messages
+ *****************************/
+BEGIN AUTONOMOUS TRANSACTION
+  INSERT INTO "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+           VALUES(:im_product, 
+                 (select IFNULL(MAX(logid), 0) + 1 
+                    from "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+                      where productid = :im_product), 
+                 now(), CURRENT_USER, 'End of product insertion');
+  INSERT INTO "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+           VALUES(:im_product, 
+                 (select IFNULL(MAX(logid), 0) + 1 
+                    from "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.productLog" 
+                      where productid = :im_product),
+                  now(),  CURRENT_USER, :im_product || ' has been created successfully');
+  COMMIT;
+END;
+
+ex_message := 'Product ' || :im_product || ' inserted successfully';  
+
+END;

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<title>FullText Search on Sales Order Worklist</title>
+<meta name="description" content="">
+<meta name="author" content="SAP AG">
+
+<!-- CSS: implied media="all" -->
+<!-- CSS concatenated and minified via ant build script-->
+<link rel="stylesheet" type="text/css" href="search.css">
+<!-- end CSS-->
+<link rel="shortcut icon" href="../img/favicon.png" />
+
+<script data-main="/sap/bc/ina/uitoolkit/js/main.js" src="/sap/bc/ina/uitoolkit/js/lib/require.js"></script>
+
+<!-- create fulltext index - No Longer Needed in SPS09 -->
+<!-- <script> -->
+<!-- requirejs(['/sap/hana/democontent/epmNext/fulltextsearch/server/createFulltextIndex.js'], function   () { }); -->
+<!-- </script> -->
+
+
+</head>
+
+<body>
+
+    <header>
+        <div data-sap-widget="header" data-title="SAP HANA Information Access - FullText Search on Sales Order Worklist" data-helphref="http://help.sap.com/hana/SAP_HANA_Interactive_Education_SHINE_en.pdf"></div>
+    </header>
+
+    <div class="background">
+    <div data-sap-widget="alert"></div>
+
+    
+   <div data-sap-widget="workarea" data-entityset="SALES_ORDER_WORKLIST" data-packagename="sap.hana.democontent.epmNext.models" data-aggregationdimension="SALESORDERID" >
+
+   		<div class="searchnfilterframe">
+   			<div data-useresponseattributes="true" data-usedimensions="true" data-sap-widget="searchnfilter"></div>
+   		</div>
+
+        <div class="facetPaneShadow">
+          <div class="facetPane">
+
+            <div class="facetColumn" data-children-drag-handle="header">
+
+                <div data-sap-widget="workareaitem" data-title="Drop here" data-target-position="0"></div>
+
+                <div data-sap-widget="workareaitem" data-title="Drop here" data-target-position="1"></div>
+
+                <div data-sap-widget="workareaitem" data-title="Drop here" data-target-position="2"></div>
+
+            </div><!-- end of the facetColumn" -->
+          </div> <!--  end of facetPane -->
+        </div> <!--  end of facetPaneShadow -->
+
+        <div class="contentPaneShadow">
+            <div class="contentPane" data-children-drag-handle="header">
+                <!-- The following div is a placeholder that will be replaced on the first time a workarea-centerable will be centered. -->
+                <div data-sap-widget="workareaitem" data-iscenter="true" data-title="Drop here" data-target-position="3"></div>
+            </div>
+        </div>
+
+        <div data-sap-widget="facetrepository" data-children-drag-handle="body">
+
+                 	<div data-sap-widget="workareaitem" data-title="Business Partner" data-source-position="0">
+                    <div data-sap-widget="switchbox" data-activeindex="1">
+
+                        <!-- First switchbox item -->
+                        <a href="javascript:void(0)" class="iconBarChartHorizontal">Bar Chart</a>
+                        <div data-sap-widget="chart" data-toplarge="45" data-title="BP-BAR" data-dimension="COMPANYNAME" data-charttype="bar" data-color="#F0AB00"></div>  
+
+                        <!-- Second switchbox item -->
+                        <a href="javascript:void(0)" class="iconPieChart">Pie Chart</a>
+                        <div data-sap-widget="chart" data-title="BP-PIE" data-dimension="COMPANYNAME" data-charttype="pie" data-color="#F0AB00"></div>
+
+                    </div>
+                </div>               
+           
+   				 <div data-sap-widget="workareaitem" data-title="Category">
+                    <div data-sap-widget="switchbox" data-activeindex="1">
+
+                        <!-- First switchbox item -->
+                        <a href="javascript:void(0)" class="iconBarChartHorizontal">Bar Chart</a>
+                        <div data-sap-widget="chart" data-toplarge="25" data-title="CATEGORY-BAR" data-dimension="CATEGORY" data-charttype="bar" data-color="#F0AB00"></div>
+
+                        <!-- Second switchbox item -->
+                        <a href="javascript:void(0)" class="iconPieChart">Pie Chart</a>
+                        <div data-sap-widget="chart" data-title="CATEGORY-PIE" data-dimension="CATEGORY" data-charttype="pie" data-color="#F0AB00"></div>
+
+                    </div>
+                </div>
+                
+                <div data-sap-widget="workareaitem" data-title="Sales Orders" data-source-position="3">
+                	<div data-sap-widget="switchbox" data-activeindex="0">
+
+	                    <!-- First switchbox item -->
+	                    <a href="javascript:void(0)" class="iconListView">Result List</a>
+	                    <div data-sap-widget="resultlist"
+	                         data-maxresultslarge="4" data-maxresultssmall="3" data-responseattributes="SALESORDERID,PARTNERID,CURRENCY,GROSSAMOUNT,PRODUCTID,QUANTITY,QUANTITYUNIT,COMPANYNAME,CATEGORY,CITY,PRODUCTNAME,PRODUCTDESC"
+	                         data-detailwidth="650" data-detailheight="380"	                       	                     
+	                         data-opendetailevent="click" data-showdetail="true"
+	                         data-orderby="SALESORDERID"
+	                         data-resulttemplate="../templates/product.html"
+	                         data-resulttemplate-css="../templates/product.css"
+	                         data-resulttemplate-small="../templates/product_small.html"
+	                         data-resulttemplate-small-css="../templates/product_small.css"
+	                         data-resulttemplate-detail="../templates/product_detail.html"
+	                         data-resulttemplate-detail-css="../templates/product_detail.css">
+	                    </div>
+                	</div>
+                </div>
+
+  
+            </div>  <!-- end of facetrepository div -->
+
+    </div> <!-- end of workarea div -->
+
+    <div class="clear"></div>
+
+    </div> <!-- end of background div -->
+</body>
+</html>

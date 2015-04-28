@@ -1,0 +1,27 @@
+
+import = [
+            {
+			    cdstable = "sap.hana.democontent.epmNext.data::MD.Addresses";
+                file = "sap.hana.democontent.epmNext.data.loads:addresses.csv";
+                header = true;
+                useHeaderNames = true;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::MD.BusinessPartner";
+                file = "sap.hana.democontent.epmNext.data.loads:businessPartner.csv";
+                header = true;
+                useHeaderNames = true;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::MD.Employees";
+                file = "sap.hana.democontent.epmNext.data.loads:employees.csv";
+                header = true;
+                useHeaderNames = true;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::MD.Products";
+                file = "sap.hana.democontent.epmNext.data.loads:products.csv";
+                header = true;
+                useHeaderNames = true;
+            }                                    
+         ]; 

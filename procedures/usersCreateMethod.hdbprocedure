@@ -1,0 +1,31 @@
+PROCEDURE SAP_HANA_EPM_NEXT."sap.hana.democontent.epmNext.procedures::usersCreateMethod" (
+		IN row SAP_HANA_EPM_NEXT."sap.hana.democontent.epmNext.data::User.Details", 
+		OUT error SAP_HANA_EPM_NEXT."sap.hana.democontent.epmNext.data::Procedures.tt_errors" ) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	DEFAULT SCHEMA SAP_HANA_EPM_NEXT
+	AS
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+declare lv_pers_no string;
+declare lv_firstname string;
+declare lv_lastname string;
+declare lv_e_mail string;
+
+select PERS_NO, FIRSTNAME, LASTNAME, E_MAIL 
+     into lv_pers_no, lv_firstname, 
+          lv_lastname, lv_e_mail
+                      from :row;
+
+if :lv_e_mail = '' or :lv_e_mail = ' ' then
+  error = select 500 as http_status_code, 
+               'Invalid email ' || lv_firstname as error_message, 
+                     'No Way! E-Mail field can not be empty' as detail from dummy;
+else
+  insert into "sap.hana.democontent.epmNext.data::User.Details" 
+             values ("sap.hana.democontent.epmNext.data::purchaseOrderId".NEXTVAL, lv_firstname, 
+                     lv_lastname, lv_e_mail);
+end if;
+END;

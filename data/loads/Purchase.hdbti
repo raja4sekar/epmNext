@@ -1,0 +1,14 @@
+import = [
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::PO.Header";
+                file = "sap.hana.democontent.epmNext.data.loads:purchaseOrder.csv";
+                header = true;
+                useHeaderNames = true;
+            },
+            {
+                cdstable = "sap.hana.democontent.epmNext.data::PO.Item";
+                file = "sap.hana.democontent.epmNext.data.loads:purchaseOrderItem.csv";
+                header = true;
+                useHeaderNames = true;
+            }            
+         ];

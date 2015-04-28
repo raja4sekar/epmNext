@@ -1,0 +1,9 @@
+service namespace "sap.hana.democontent.epmNext"  { 
+   "sap.hana.democontent.epmNext.models::PURCHASE_ORDER_WORKLIST" as "PO_WORKLIST" 
+   keys ("PurchaseOrderId","PurchaseOrderItem");   
+
+}
+
+   annotations {
+     enable OData4SAP;
+}

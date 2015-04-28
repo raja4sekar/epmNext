@@ -1,0 +1,6 @@
+service  {
+    "sap.hana.democontent.epmNext.data::PO.Header"
+	as "Header" concurrencytoken;
+
+}
+

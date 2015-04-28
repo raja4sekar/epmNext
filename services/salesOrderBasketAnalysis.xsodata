@@ -1,0 +1,6 @@
+service namespace "sap.hana.democontent.epmNext"  { 
+   "sap.hana.democontent.epmNext.models::SALESORDER_BASKET_ANALYSIS" 
+    as "SalesBasket" with ("CATEGORY", "SALES")   
+	keys generate local "ID"
+    aggregates always;	  
+}

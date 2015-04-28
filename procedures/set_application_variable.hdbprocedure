@@ -1,0 +1,22 @@
+PROCEDURE SAP_HANA_EPM_NEXT."sap.hana.democontent.epmNext.procedures::set_application_variable" (
+		IN NAME NVARCHAR(30), 
+		IN APPLICATION NVARCHAR(128), 
+		IN EXPIRY TIMESTAMP, 
+		IN DATA NCLOB ) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY DEFINER
+	DEFAULT SCHEMA SAP_HANA_EPM_NEXT
+	AS
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+  	UPSERT "sap.hana.democontent.epmNext.data::Util.SSCOOKIE"
+	  VALUES('', :NAME, :APPLICATION, :EXPIRY, :DATA)
+	   WHERE SESSIONID   = ''
+	     AND NAME        = :NAME
+	     AND APPLICATION = :APPLICATION; 
+	     
+	DELETE FROM "sap.hana.democontent.epmNext.data::Util.SSCOOKIE"
+	 WHERE EXPIRY <= now();  
+END;

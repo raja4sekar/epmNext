@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="SALES_DETAILS" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DEFAULT" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="SALES_DETAILS"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="sap.hana.democontent.epmNext.data::SO.Header" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_HANA_EPM_NEXT" columnObjectName="sap.hana.democontent.epmNext.data::SO.Header"/>
+    </DataSource>
+    <DataSource id="sap.hana.democontent.epmNext.data::SO.Item" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_HANA_EPM_NEXT" columnObjectName="sap.hana.democontent.epmNext.data::SO.Item"/>
+    </DataSource>
+    <DataSource id="sap.hana.democontent.epmNext.data::MD.Products" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_HANA_EPM_NEXT" columnObjectName="sap.hana.democontent.epmNext.data::MD.Products"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+      <viewAttributes>
+        <viewAttribute id="SALESORDERID"/>
+        <viewAttribute id="SALESORDERITEM"/>
+        <viewAttribute id="PRODUCTID"/>
+        <viewAttribute id="NETAMOUNT"/>
+        <viewAttribute id="History_CREATEDAT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#sap.hana.democontent.epmNext.data::SO.Header">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERID" source="SALESORDERID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETAMOUNT" source="NETAMOUNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="History_CREATEDAT" source="HISTORY.CREATEDAT"/>
+      </input>
+      <input node="#sap.hana.democontent.epmNext.data::SO.Item">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERITEM" source="SALESORDERITEM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTID" source="PRODUCT.PRODUCTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERID" source="SALESORDERID"/>
+      </input>
+      <joinAttribute name="SALESORDERID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="inner">
+      <viewAttributes>
+        <viewAttribute id="SALESORDERID"/>
+        <viewAttribute id="SALESORDERITEM"/>
+        <viewAttribute id="PRODUCTID"/>
+        <viewAttribute id="NETAMOUNT"/>
+        <viewAttribute id="History_CREATEDAT"/>
+        <viewAttribute id="CATEGORY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERID" source="SALESORDERID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERITEM" source="SALESORDERITEM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTID" source="PRODUCTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETAMOUNT" source="NETAMOUNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="History_CREATEDAT" source="History_CREATEDAT"/>
+      </input>
+      <input node="#sap.hana.democontent.epmNext.data::MD.Products">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="CATEGORY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTID" source="PRODUCTID"/>
+      </input>
+      <joinAttribute name="PRODUCTID"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_2">
+    <attributes>
+      <attribute id="SALESORDERID" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SALESORDERID"/>
+        <keyMapping columnObjectName="Join_2" columnName="SALESORDERID"/>
+      </attribute>
+      <attribute id="SALESORDERITEM" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SALESORDERITEM"/>
+        <keyMapping columnObjectName="Join_2" columnName="SALESORDERITEM"/>
+      </attribute>
+      <attribute id="History_CREATEDAT" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HISTORY_CREATEDAT"/>
+        <keyMapping columnObjectName="Join_2" columnName="History_CREATEDAT"/>
+      </attribute>
+      <attribute id="CATEGORY" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CATEGORY"/>
+        <keyMapping columnObjectName="Join_2" columnName="CATEGORY"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="340"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="250"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

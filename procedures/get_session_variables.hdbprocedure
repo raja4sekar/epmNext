@@ -1,0 +1,20 @@
+PROCEDURE SAP_HANA_EPM_NEXT."sap.hana.democontent.epmNext.procedures::get_session_variables" (
+		IN SESSIONID NVARCHAR(32), 
+		IN APPLICATION NVARCHAR(128), 
+		OUT svariables SAP_HANA_EPM_NEXT."sap.hana.democontent.epmNext.data::Procedures.tt_variable" ) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY DEFINER 
+	DEFAULT SCHEMA SAP_HANA_EPM_NEXT
+	AS
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+ 
+    svariables = 
+      SELECT SESSIONID, NAME, APPLICATION, EXPIRY, DATA 
+ 	    FROM "sap.hana.democontent.epmNext.data::Util.SSCOOKIE"
+	   WHERE SESSIONID   = :SESSIONID
+	     AND APPLICATION = :APPLICATION; 
+	     
+END;

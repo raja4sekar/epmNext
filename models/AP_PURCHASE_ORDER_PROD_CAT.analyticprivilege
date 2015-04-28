@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Privilege:analyticPrivilege xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" schemaVersion="1.1" id="AP_PURCHASE_ORDER_PROD_CAT">
+  <descriptions defaultDescription="AP_PURCHASE_ORDER_PROD_CAT"/>
+  <securedModels allInformationModels="false">
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/PURCHASE_COMMON_CURRENCY</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/PO_WORKLIST</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/PURCHASE_ORDER_WORKLIST</modelUri>
+    <modelUri>/sap.hana.democontent.epmNext.models/calculationviews/PURCHASE_OVERVIEW</modelUri>
+  </securedModels>
+  <restriction logicalOperator="AND">
+    <filter xsi:type="Privilege:AttributeFilter" attributeName="CATEGORY">
+      <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Flat-screen television"/>
+    </filter>
+    <attributeName>CATEGORY</attributeName>
+    <originInformationModelUri>/sap.hana.democontent.epmNext.models/calculationviews/PURCHASE_COMMON_CURRENCY</originInformationModelUri>
+  </restriction>
+  <restriction logicalOperator="AND">
+    <filter xsi:type="Privilege:AttributeFilter" attributeName="CATEGORY">
+      <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Flat-screen television"/>
+    </filter>
+    <attributeName>CATEGORY</attributeName>
+    <originInformationModelUri>/sap.hana.democontent.epmNext.models/calculationviews/PO_WORKLIST</originInformationModelUri>
+  </restriction>
+  <restriction logicalOperator="AND">
+    <filter xsi:type="Privilege:AttributeFilter" attributeName="ProductCategory">
+      <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Flat-screen television"/>
+    </filter>
+    <attributeName>ProductCategory</attributeName>
+    <originInformationModelUri>/sap.hana.democontent.epmNext.models/calculationviews/PURCHASE_ORDER_WORKLIST</originInformationModelUri>
+  </restriction>
+</Privilege:analyticPrivilege>

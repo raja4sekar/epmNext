@@ -1,0 +1,6 @@
+{
+"name" : "Gadget Properties",
+"specXMLURL" : "/sap/hana/democontent/epmNext/ui/uis/xml/personalization.xml" ,
+"description": "",
+"icon" : ""
+}

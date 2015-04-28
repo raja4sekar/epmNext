@@ -1,0 +1,67 @@
+.sapMStdTileInfo{
+	color: #007cc0;
+}
+#__tile5-info{
+	white-space: normal !important;
+	margin-top: 1rem !important;
+}
+#__tile6-info{
+	white-space: normal !important;
+	margin-top: 1rem !important;
+}
+.templateTileClass{
+	background-size: 192px;
+	background-repeat: no-repeat;
+	background-position: center;		
+}
+.dgClass{
+	background-image: url('thumbnails/dg.png');
+}
+.poClass{
+	background-image: url('thumbnails/poworklist.png');
+}
+.soClass{
+	background-image: url('thumbnails/sales.png');
+}
+.sowClass{
+	background-image: url('thumbnails/salesWorklist.png');
+}		
+.ucClass{
+	background-image: url('thumbnails/userCRUD.png');
+}
+.uisbClass{
+	background-image: url('thumbnails/uis1.png');
+}
+.uisgClass{
+	background-image: url('thumbnails/uis.png');
+}	
+.spatialClass{
+	background-image: url('thumbnails/spatial.jpg');
+}
+.inatoolkitClass{
+	background-image: url('thumbnails/inatoolkit.png');
+}
+.salesMobileClass{
+	background-image: url('thumbnails/salesMobile.jpg');
+}
+.fioriLaunchpadClass{
+	background-image: url('thumbnails/fioriLaunchpad.JPG');
+}
+/* welcome dialog */
+.welcomeDlg {
+	background-color: #FFFFFF !important;
+}
+.welcomeDlg .sapUiDlgHdr {
+	border-bottom: 0px solid #FFFFFF !important;
+}
+.welcomeDlg .sapUiDlgCont {
+	background-color: #FFFFFF !important;
+	padding: 10px 25px 12px;
+}
+.welcomeHeaderTextAlign {
+	font-size: 22px !important;
+	padding-left: 5px;
+}		
+.dialogTextColor{
+	color: #007CC0 !important;
+}

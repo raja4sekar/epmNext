@@ -1,0 +1,13 @@
+PROCEDURE SAP_HANA_EPM_NEXT."sap.hana.democontent.epmNext.procedures::jobsCreateEntry" ( ) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	DEFAULT SCHEMA SAP_HANA_EPM_NEXT
+	AS
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+   insert into "sap.hana.democontent.epmNext.data::JobsDemo.Details" 
+             values (now(), 'Inserted via SQLScript');
+ 
+END;

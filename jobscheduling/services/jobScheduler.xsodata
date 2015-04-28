@@ -1,0 +1,8 @@
+service namespace "sap.hana.democontent.epmNext"{
+
+	"sap.hana.democontent.epmNext.data::JobsDemo.Details" as "JobDetails";
+	
+	"sap.hana.democontent.epmNext.data::JobsDemo.RuntimeSchedules" as "RuntimeJobSchedules";
+	
+}
+

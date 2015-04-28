@@ -1,0 +1,10 @@
+description = "ABAP User Details";
+host = "pald00527382a.sap.corp";
+port = 8020;
+pathPrefix = "";
+useProxy = false;
+proxyHost = "";
+proxyPort = 0;
+authType = basic;
+useSSL = false;
+timeout = 0;

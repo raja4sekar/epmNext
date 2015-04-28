@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="PRODUCT_SALES" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED">
+  <descriptions defaultDescription="PRODUCT_SALES"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="sap.hana.democontent.epmNext.data::SO.Item" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_HANA_EPM_NEXT" columnObjectName="sap.hana.democontent.epmNext.data::SO.Item"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <viewAttributes>
+        <viewAttribute id="PRODUCT_PRODUCTID_1"/>
+        <viewAttribute id="GROSSAMOUNT_1"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#sap.hana.democontent.epmNext.data::SO.Item">
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_PRODUCTID_1" source="PRODUCT.PRODUCTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GROSSAMOUNT_1" source="GROSSAMOUNT"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Projection_1">
+    <attributes>
+      <attribute id="PRODUCT_PRODUCTID_1$local">
+        <keyMapping columnObjectName="Projection_1" columnName="PRODUCT_PRODUCTID_1"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="YEAR_OF_SALE" hidden="false" order="2" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR_OF_SALE"/>
+        <keyCalculation datatype="VARCHAR" length="4">
+          <formula>midstr(string(&quot;HISTORY_CREATEDAT&quot;),0,4)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="GROSSAMOUNT_1" order="1" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="GROSSAMOUNT"/>
+        <measureMapping columnObjectName="Projection_1" columnName="GROSSAMOUNT_1"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="/sap.hana.democontent.epmNext.spatial.models/calculationviews/REGION_PRODUCT">
+        <attributes>
+          <attributeRef>#PRODUCT_PRODUCTID_1$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>PRODUCTID_PRODUCTID</attributeName>
+        </associatedAttributeNames>
+        <properties joinOperator="Equal" joinType="referential"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="200"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="250" y="250"/>
+      </shape>
+      <shape modelObjectName="/sap.hana.democontent.epmNext.spatial.models/calculationviews/REGION_PRODUCT" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="649" y="30"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

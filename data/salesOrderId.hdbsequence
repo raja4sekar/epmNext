@@ -1,0 +1,8 @@
+schema= "SAP_HANA_EPM_NEXT";
+start_with= 1400000000;
+maxvalue= 1499999999;
+nomaxvalue=false;
+minvalue= 1;
+nominvalue=true; 
+cycles= false;
+depends_on_table= "sap.hana.democontent.epmNext.data::SO.Header";

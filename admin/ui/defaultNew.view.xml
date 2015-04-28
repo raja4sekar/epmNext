@@ -1,0 +1,6 @@
+<core:View controllerName="ui.defaultNew" xmlns="sap.m"
+	xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core">
+	<core:Fragment fragmentName="ui.settings" type="XML" />
+    <core:Fragment fragmentName="ui.log" type="XML" /> 
+    <core:Fragment fragmentName="ui.volumeChart" type="XML" /> 
+</core:View>

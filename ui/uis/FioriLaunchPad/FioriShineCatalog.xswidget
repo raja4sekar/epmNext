@@ -1,0 +1,260 @@
+{
+    "name": "FioriShineCatalog",
+    "type": "fiori",
+    "widgets": [
+        {
+            "type": "chips.tiles.applauncher.StaticTile",
+            "ID": "ed3e8d04-99b6-476d-8742-4c1ff912e209-1397103946155",
+            "properties": [
+                {
+                    "key": "display_icon_url",
+                    "value": "sap-icon://Fiori2/F0002"
+                },
+                {
+                    "key": "display_info_text",
+                    "value": "\"The demo application comes with a tool for generating additional sales and purchase order records, "
+                },
+                {
+                    "key": "display_title_text",
+                    "value": "Data Generator"
+                },
+                {
+                    "key": "display_subtitle_text",
+                    "value": "Example for Static App Launcher"
+                },
+                {
+                    "key": "navigation_use_semantic_object",
+                    "value": "false"
+                },
+                {
+                    "key": "navigation_target_url",
+                    "value": "/sap/hana/democontent/epmNext/admin/admin.html"
+                },
+                {
+                    "key": "navigation_semantic_object",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_action",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_parameters",
+                    "value": ""
+                },
+                {
+                    "key": "display_search_keywords",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "type": "chips.tiles.applauncherdynamic.DynamicTile",
+            "ID": "9df3053f-45b0-43c8-8410-80c3fbe0cb59-1397104075654",
+            "properties": [
+                {
+                    "key": "display_icon_url",
+                    "value": "sap-icon://inbox"
+                },
+                {
+                    "key": "display_title_text",
+                    "value": "Purchase Order Worklist"
+                },
+                {
+                    "key": "display_subtitle_text",
+                    "value": "Example for Dynamic App Launcher"
+                },
+                {
+                    "key": "display_info_text",
+                    "value": "\"This UI illustrates a comprehensive Purchase Order Worklist UI where there are several tabs based on the OData model constructed in the demo content."
+                },
+                {
+                    "key": "display_number_unit",
+                    "value": "Purchase Orders"
+                },
+                {
+                    "key": "service_url",
+                    "value": "/sap/hana/democontent/epmNext/services/poWorklist.xsodata/PO_WORKLIST/$count"
+                },
+                {
+                    "key": "service_refresh_interval",
+                    "value": "1"
+                },
+                {
+                    "key": "navigation_use_semantic_object",
+                    "value": "false"
+                },
+                {
+                    "key": "navigation_target_url",
+                    "value": "/sap/hana/democontent/epmNext/ui/poworklist/poWorklist.html"
+                },
+                {
+                    "key": "navigation_semantic_object",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_action",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_parameters",
+                    "value": ""
+                },
+                {
+                    "key": "display_search_keywords",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "type": "chips.tiles.applauncherdynamic.DynamicTile",
+            "ID": "9196996e-524e-46c6-87cf-f954ef45a523-1397104165731",
+            "properties": [
+                {
+                    "key": "display_icon_url",
+                    "value": ""
+                },
+                {
+                    "key": "display_title_text",
+                    "value": "Sales Order Worklist"
+                },
+                {
+                    "key": "display_subtitle_text",
+                    "value": "Ex for Dynamic App Launcher"
+                },
+                {
+                    "key": "display_info_text",
+                    "value": "This tab also provides a feature for creating a simple Sales Order with multiple product."
+                },
+                {
+                    "key": "display_number_unit",
+                    "value": "Sales Orders"
+                },
+                {
+                    "key": "service_url",
+                    "value": "/sap/hana/democontent/epmNext/services/salesOrders.xsodata/SalesOrderHeader/$count"
+                },
+                {
+                    "key": "service_refresh_interval",
+                    "value": "1"
+                },
+                {
+                    "key": "navigation_use_semantic_object",
+                    "value": "false"
+                },
+                {
+                    "key": "navigation_target_url",
+                    "value": "/sap/hana/democontent/epmNext/ui/salesDashboard/soWorklist.html"
+                },
+                {
+                    "key": "navigation_semantic_object",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_action",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_parameters",
+                    "value": ""
+                },
+                {
+                    "key": "display_search_keywords",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "type": "chips.tiles.applauncher.StaticTile",
+            "ID": "a6eb262b-c3ca-47d2-9b14-5fb38eb40405-1397104247982",
+            "properties": [
+                {
+                    "key": "display_icon_url",
+                    "value": "sap-icon://Fiori2/F0012"
+                },
+                {
+                    "key": "display_info_text",
+                    "value": "• The Overview tab contains all the sales specific charts based on Region/Country/Discount per region.The Product Reports tab contains charts that provide sales information categorized by product."
+                },
+                {
+                    "key": "display_title_text",
+                    "value": "Sales Order Dashboard"
+                },
+                {
+                    "key": "display_subtitle_text",
+                    "value": "Static App Launcher"
+                },
+                {
+                    "key": "navigation_use_semantic_object",
+                    "value": "false"
+                },
+                {
+                    "key": "navigation_target_url",
+                    "value": "/sap/hana/democontent/epmNext/ui/salesDashboard/index.html"
+                },
+                {
+                    "key": "navigation_semantic_object",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_action",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_parameters",
+                    "value": ""
+                },
+                {
+                    "key": "display_search_keywords",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "type": "chips.tiles.applauncher.StaticTile",
+            "ID": "53bd350f-3b32-4fa0-ba96-5c6085eb7294-1397104697429",
+            "properties": [
+                {
+                    "key": "display_icon_url",
+                    "value": ""
+                },
+                {
+                    "key": "display_info_text",
+                    "value": ""
+                },
+                {
+                    "key": "display_title_text",
+                    "value": "SHINE Document"
+                },
+                {
+                    "key": "display_subtitle_text",
+                    "value": "Shine Pdf"
+                },
+                {
+                    "key": "navigation_use_semantic_object",
+                    "value": "false"
+                },
+                {
+                    "key": "navigation_target_url",
+                    "value": "http://help.sap.com/hana/SAP_HANA_Interactive_Education_SHINE_en.pdf"
+                },
+                {
+                    "key": "navigation_semantic_object",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_action",
+                    "value": ""
+                },
+                {
+                    "key": "navigation_semantic_parameters",
+                    "value": ""
+                },
+                {
+                    "key": "display_search_keywords",
+                    "value": ""
+                }
+            ]
+        }
+    ]
+}
