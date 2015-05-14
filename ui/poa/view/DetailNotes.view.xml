@@ -1,5 +1,5 @@
 <core:View
-	controllerName="view.DetailNotes"
+	controllerName="sap.shineNext.poa.view.DetailNotes"
 	xmlns="sap.m"
 	xmlns:commons="sap.ui.commons"
 	xmlns:form="sap.ui.commons.form"
@@ -13,7 +13,7 @@
 		<FeedListItem
 			sender="{Author}"
 			icon="{Thumbnail}"
-			timestamp="{path:'CreatedAt', formatter:'util.Formatter.Date'}"
+			timestamp="{path:'CreatedAt', formatter:'sap.shineNext.poa.util.Formatter.Date'}"
 			text="{Text}" />
 	</List>
 </core:View>

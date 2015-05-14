@@ -11,19 +11,21 @@
 		type="text/javascript"
 		data-sap-ui-theme="sap_bluecrystal"
 		data-sap-ui-xx-bindingSyntax="complex" 
+		data-sap-ui-resourceroots='{
+				"sap.shineNext.xsds": "./",
+				"app": "./app",
+				"util": "./util" }'			
 		data-sap-ui-libs="sap.m">
 	</script>
 	<script>
-    	jQuery.sap.registerModulePath('Application', 'Application');
-    	
-    	// launch application
-    	jQuery.sap.require("Application");
-    
-    	new Application({
-    		root : "content"
-    	});
+	
+	new sap.m.Shell({
+		app : new sap.ui.core.ComponentContainer({
+			name : "sap.shineNext.xsds"
+		})
+	}).placeAt("content");
+		
 	</script>
-
 </head>
 <body class="sapUiBody" role="application">
 	<div id="content"></div>

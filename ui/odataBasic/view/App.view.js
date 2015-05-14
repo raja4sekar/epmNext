@@ -1,7 +1,7 @@
-sap.ui.jsview("view.App", { 
+sap.ui.jsview("sap.shineNext.odataBasic.view.App", { 
 
         getControllerName: function() {
-            return "view.App"; 
+            return "sap.shineNext.odataBasic.view.App"; 
         },
 
         createContent: function(oController) {

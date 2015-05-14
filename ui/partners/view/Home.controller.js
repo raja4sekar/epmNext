@@ -1,7 +1,7 @@
 jQuery.sap.require("sap.m.MessageBox");
 jQuery.sap.require("sap.m.MessageToast");
 
-sap.ui.controller("view.Home", {
+sap.ui.controller("sap.shineNext.partners.view.Home", {
 
 	onInit : function() {
 		var model = new sap.ui.model.json.JSONModel({

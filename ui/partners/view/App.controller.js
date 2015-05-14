@@ -1,7 +1,7 @@
 jQuery.sap.require("sap.m.InstanceManager");
 jQuery.sap.require("jquery.sap.history");
 
-sap.ui.controller("view.App", {
+sap.ui.controller("sap.shineNext.partners.view.App", {
 	
 	getDefaultPage : function() {
 		return "Home";
@@ -89,7 +89,7 @@ sap.ui.controller("view.App", {
 				var type = ("Home" === id) ? "JS" : "XML";
 				var page = sap.ui.view({
 					id : id,
-					viewName : "view." + id,
+					viewName : "sap.shineNext.partners.view." + id,
 					type : type
 				});
 				app.addPage(page);

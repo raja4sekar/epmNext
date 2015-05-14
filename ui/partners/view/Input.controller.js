@@ -1,4 +1,4 @@
-sap.ui.controller("view.Input", {
+sap.ui.controller("sap.shineNext.partners.view.Input", {
 
 	onInit : function() {
 

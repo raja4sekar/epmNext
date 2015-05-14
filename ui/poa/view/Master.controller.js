@@ -1,12 +1,15 @@
 jQuery.sap.require("util.Formatter");
 
-sap.ui.controller("view.Master", {
+sap.ui.controller("sap.shineNext.poa.view.Master", {
 
 	/**
 	 * Called by the UI5 runtime to init this controller
 	 */
 	onInit : function () {
-		
+		this.getView().setModel(sap.ui.getCore().getModel("i18n"),"i18n");
+		this.getView().setModel(sap.ui.getCore().getModel("device"),"device");
+		this.getView().setModel(sap.ui.getCore().getModel("employee"),"employee");	
+		this.getView().setModel(sap.ui.getCore().getModel());	
 		// handle data loaded events
 		var bus = sap.ui.getCore().getEventBus();
 		bus.subscribe("app", "DataLoaded", function () {
@@ -50,7 +53,7 @@ sap.ui.controller("view.Master", {
 	
 	handleRefresh : function (evt) {
 		var that = this;
-		if (model.Config.isMock) {
+		if (sap.shineNext.poa.model.Config.isMock) {
 			
 			// just wait if we do not have oData services
 			setTimeout(function () {

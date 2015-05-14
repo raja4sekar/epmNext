@@ -1,7 +1,7 @@
-sap.ui.jsview("view.App", {
+sap.ui.jsview("sap.shineNext.poa.view.App", {
 
 	getControllerName: function () {
-		return "view.App";
+		return "sap.shineNext.poa.view.App";
 	},
 	
 	createContent: function (oController) {
@@ -11,9 +11,10 @@ sap.ui.jsview("view.App", {
 		
 		this.app = new sap.m.SplitApp();
 		
-		this.app.addMasterPage(sap.ui.xmlview("Master", "view.Master"));
+		this.app.addMasterPage(sap.ui.xmlview("Master", "sap.shineNext.poa.view.Master"));
 		
-		this.app.addDetailPage(sap.ui.xmlview("Empty", "view.Empty"));
+		this.app.addDetailPage(sap.ui.xmlview("Empty", "sap.shineNext.poa.view.Empty"));
+		//return this.app;
 		
 		return new sap.m.Shell({
 			title : "{i18n>shellTitle}",

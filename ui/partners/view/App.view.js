@@ -1,7 +1,7 @@
-sap.ui.jsview("view.App", {
+sap.ui.jsview("sap.shineNext.partners.view.App", {
 
 	getControllerName: function () {
-		return "view.App";
+		return "sap.shineNext.partners.view.App";
 	},
 
 	createContent : function (oController) {
@@ -16,7 +16,7 @@ sap.ui.jsview("view.App", {
 			}
 		});
 		
-		this.app.addPage(new sap.ui.jsview("Home", "view.Home"));
+		this.app.addPage(new sap.ui.jsview("Home", "sap.shineNext.partners.view.Home"));
 		
 		return this.app;
 	}

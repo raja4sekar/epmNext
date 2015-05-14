@@ -1,5 +1,5 @@
 <core:View
-	controllerName="view.Detail"
+	controllerName="sap.shineNext.poa.view.Detail"
 	xmlns="sap.m"
 	xmlns:commons="sap.ui.commons"
 	xmlns:form="sap.ui.commons.form"
@@ -39,7 +39,7 @@
 				numberUnit="{CURRENCY}" >
 				<attributes>
 					<ObjectAttribute
-						text="{path:'HISTORY_CREATEDAT', formatter:'util.Formatter.Date'}" />
+						text="{path:'HISTORY_CREATEDAT', formatter:'sap.shineNext.poa.util.Formatter.Date'}" />
 					<ObjectAttribute
 						text="{HISTORY_CREATEDBY_EMPLOYEEID}" />
 				</attributes>
@@ -48,7 +48,7 @@
 						text="{ORDERINGSTATUSDESC}"
 						state="{
 							path:'ORDERINGSTATUSDESC',
-							formatter:'util.Formatter.StatusState'
+							formatter:'sap.shineNext.poa.util.Formatter.StatusState'
 						}" />
 				</firstStatus>
 			</ObjectHeader>
@@ -108,9 +108,9 @@
 							title="{PURCHASEORDERITEM}"
 							text="{ProductName}"/>
 							<Text
-								text="{path:'QUANTITY', formatter:'util.Formatter.Quantity'}"/>
+								text="{path:'QUANTITY', formatter:'sap.shineNext.poa.util.Formatter.Quantity'}"/>
 							<Text
-								text="{path:'DELIVERYDATE', formatter:'util.Formatter.Date'}"/>
+								text="{path:'DELIVERYDATE', formatter:'sap.shineNext.poa.util.Formatter.Date'}"/>
 						<ObjectNumber
 							number="{GROSSAMOUNT}"
 							numberUnit="{CURRENCY}" />

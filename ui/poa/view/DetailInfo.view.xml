@@ -1,5 +1,5 @@
 <core:View
-	controllerName="view.DetailInfo"
+	controllerName="sap.shineNext.poa.view.DetailInfo"
 	xmlns="sap.m"
 	xmlns:commons="sap.ui.commons"
 	xmlns:form="sap.ui.commons.form"

@@ -1,12 +1,15 @@
 jQuery.sap.require("sap.m.MessageToast");
 
-sap.ui.controller("view.LineItem", {
+sap.ui.controller("sap.shineNext.poa.view.LineItem", {
 
 	/**
 	 * Called by the UI5 runtime to init this controller
 	 */
 	onInit : function () {
-		
+		this.getView().setModel(sap.ui.getCore().getModel("i18n"),"i18n");
+		this.getView().setModel(sap.ui.getCore().getModel("device"),"device");
+		this.getView().setModel(sap.ui.getCore().getModel("employee"),"employee");	
+		this.getView().setModel(sap.ui.getCore().getModel());			
 		// register for onBeforeShow events of pages in app
 		this.getView().addEventDelegate({
 			onBeforeShow : jQuery.proxy(function (evt) {

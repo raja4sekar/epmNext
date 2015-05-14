@@ -1,5 +1,8 @@
 sap.ui.controller("app.details.Details3", {
-
+	onInit: function(){
+    	this.getView().setModel(sap.ui.getCore().getModel());		
+	},
+	
 	onBeforeShow : function(oData) {
 	    var view = this.getView();
 		view.oHeader.bindElement(oData.bindingContext.getPath());

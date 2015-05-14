@@ -1,13 +1,16 @@
 jQuery.sap.require("sap.m.MessageToast");
 jQuery.sap.require("sap.m.SelectDialog");
 
-sap.ui.controller("view.Detail", {
+sap.ui.controller("sap.shineNext.poa.view.Detail", {
 
 	/**
 	 * Called by the UI5 runtime to init this controller
 	 */
 	onInit : function () {
-		
+		this.getView().setModel(sap.ui.getCore().getModel("i18n"),"i18n");
+		this.getView().setModel(sap.ui.getCore().getModel("device"),"device");
+		this.getView().setModel(sap.ui.getCore().getModel("employee"),"employee");	
+		this.getView().setModel(sap.ui.getCore().getModel());			
 		// subscribe for refresh events
 		var bus = sap.ui.getCore().getEventBus();
 		bus.subscribe("app", "RefreshDetail", this._refresh, this);
@@ -55,7 +58,7 @@ sap.ui.controller("view.Detail", {
 		if (item.getContent().length === 0) {
 			var view = new sap.ui.view({
 				id : "tabView" + key,
-				viewName : "view.Detail" + key,
+				viewName : "sap.shineNext.poa.view.Detail" + key,
 				type : "XML"
 			});
 			item.addContent(view);
@@ -203,7 +206,7 @@ sap.ui.controller("view.Detail", {
 	_createRecipientDialog : function (evt) {
 		
 		// create the dialog as an internal member
-		this._recipientDialog = sap.ui.xmlfragment("view.RecipientHelpDialog", this);
+		this._recipientDialog = sap.ui.xmlfragment("sap.shineNext.poa.view.RecipientHelpDialog", this);
 		this._recipientDialog.setFilterOperator(sap.ui.model.FilterOperator.Contains); // TODO : move to XML view once API changed
 		this._recipientDialog.setModel(sap.ui.getCore().getModel("i18n"), "i18n"); // TODO: remove once ResourceModel issue is fixed
 		

@@ -1,12 +1,12 @@
-jQuery.sap.declare("util.baseAppController");
+jQuery.sap.declare("sap.shineNext.poa.util.baseAppController");
 
-jQuery.sap.require("util.AppConfig");
-jQuery.sap.require("util.NavigationHandler");
+jQuery.sap.require("sap.shineNext.poa.util.AppConfig");
+jQuery.sap.require("sap.shineNext.poa.util.NavigationHandler");
 
 (function ($){
 	var instance;
 	
-	util.baseAppController = function(sName, oControllerConfig){
+	sap.shineNext.poa.util.baseAppController = function(sName, oControllerConfig){
 		if(instance){
 			if(sName || oControllerConfig){
 				jQuery.sap.log.error("base appController should only be configured once!");
@@ -19,7 +19,7 @@ jQuery.sap.require("util.NavigationHandler");
 		jQuery.extend(true,oControllerConfig,{
 			configureApplication : function(oApp, oAppConfig){
 				//initialize global Navigation Handling
-				this.navHandler = new util.NavigationHandler(oApp,new util.AppConfig(oAppConfig)).subscribe();
+				this.navHandler = new sap.shineNext.poa.util.NavigationHandler(oApp,new sap.shineNext.poa.util.AppConfig(oAppConfig)).subscribe();
 			}
 		});
 		instance = sap.ui.controller(sName,oControllerConfig);

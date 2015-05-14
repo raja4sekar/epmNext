@@ -1,5 +1,5 @@
 <core:View
-	controllerName="view.LineItem"
+	controllerName="sap.shineNext.poa.view.LineItem"
 	xmlns="sap.m"
 	xmlns:me="sap.me"
 	xmlns:commons="sap.ui.commons"

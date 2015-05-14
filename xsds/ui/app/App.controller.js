@@ -1,5 +1,5 @@
 // This is the top level controller which manages the page navigation and history handling.
-sap.ui.controller("app.App", {
+sap.ui.controller("sap.shineNext.xsds.app.App", {
 
 			onInit : function() {
 			

@@ -1,15 +1,15 @@
-jQuery.sap.declare("util.NavigationHandler");
+jQuery.sap.declare("sap.shineNext.poa.util.NavigationHandler");
 
 jQuery.sap.require("jquery.sap.history");
 jQuery.sap.require("sap.m.InstanceManager");
 
-util.NavigationHandler = function(oApp, oAppConfig) {
+sap.shineNext.poa.util.NavigationHandler = function(oApp, oAppConfig) {
 	//add config
 	this._app = oApp;
 	this.config = oAppConfig;
 };
 
-util.NavigationHandler.prototype._getValue = function(sPropName) {
+sap.shineNext.poa.util.NavigationHandler.prototype._getValue = function(sPropName) {
 	var val = this[sPropName];
 	if (typeof val == 'string' || val instanceof String){
 		return val;
@@ -17,7 +17,7 @@ util.NavigationHandler.prototype._getValue = function(sPropName) {
 	return val();
 };
 
-util.NavigationHandler.prototype.subscribe = function () {
+sap.shineNext.poa.util.NavigationHandler.prototype.subscribe = function () {
 
 	// handler for initial history
 	var historyDefaultHandler = function (navType) {
@@ -60,7 +60,7 @@ util.NavigationHandler.prototype.subscribe = function () {
 	bus.subscribe("nav", "virtual", this._navHandler, this);
 };
 
-util.NavigationHandler.prototype._navHandler = function (channelId, eventId, data) {
+sap.shineNext.poa.util.NavigationHandler.prototype._navHandler = function (channelId, eventId, data) {
 	
 	if (eventId === "to") {
 		this._navTo(data.id, data.data, true);
@@ -83,7 +83,7 @@ util.NavigationHandler.prototype._navHandler = function (channelId, eventId, dat
 	}
 };
 
-util.NavigationHandler.prototype._navTo = function (id, data, writeHistory) {
+sap.shineNext.poa.util.NavigationHandler.prototype._navTo = function (id, data, writeHistory) {
 		
 	if (id === undefined) {
 		
@@ -130,7 +130,7 @@ util.NavigationHandler.prototype._navTo = function (id, data, writeHistory) {
 	}
 };
 
-util.NavigationHandler.prototype._navBack = function (id) {
+sap.shineNext.poa.util.NavigationHandler.prototype._navBack = function (id) {
 	if (!id) {
 		
 		// invalid parameter

@@ -1,6 +1,6 @@
 jQuery.sap.require("sap.m.MessageToast");
 
-sap.ui.controller("view.Detail", {
+sap.ui.controller("sap.shineNext.partners.view.Detail", {
 
 	onInit : function() {
 		// subscribe to onBeforeShow events

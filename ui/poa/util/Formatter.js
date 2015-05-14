@@ -1,8 +1,8 @@
-jQuery.sap.declare("util.Formatter");
+jQuery.sap.declare("sap.shineNext.poa.util.Formatter");
 
 jQuery.sap.require("sap.ui.core.format.DateFormat");
 
-util.Formatter = {
+sap.shineNext.poa.util.Formatter = {
 	
 	_statusStateMap : {
 		"Neu" : "Warning",
@@ -10,7 +10,7 @@ util.Formatter = {
 	},
 	
 	StatusState :  function (value) {
-		return (value && util.Formatter._statusStateMap[value]) ? util.Formatter._statusStateMap[value] : "None";
+		return (value && sap.shineNext.poa.util.Formatter._statusStateMap[value]) ? sap.shineNext.poa.util.Formatter._statusStateMap[value] : "None";
 	},
 	
 	Quantity :  function (value) {
@@ -37,7 +37,7 @@ util.Formatter = {
 	},
 	
 	AttachmentIcon : function(value) {
-		var map = util.Formatter.AttachmentMap;
+		var map = sap.shineNext.poa.util.Formatter.AttachmentMap;
 		var code = (value && map[value]) ? map[value] : "question-mark";
 		return "sap-icon://" + code;
 	}

@@ -1,6 +1,6 @@
-jQuery.sap.require("util.baseAppController");
+jQuery.sap.require("sap.shineNext.poa.util.baseAppController");
 
-util.baseAppController("view.App", {
+sap.shineNext.poa.util.baseAppController("sap.shineNext.poa.view.App", {
 	
 	onInit : function () {
 		
@@ -14,7 +14,7 @@ util.baseAppController("view.App", {
 				},
 				
 				viewName : function (sPageId) {
-					return "view." + sPageId;
+					return "sap.shineNext.poa.view." + sPageId;
 				},
 				
 				viewType : "XML",

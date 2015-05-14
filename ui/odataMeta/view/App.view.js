@@ -1,7 +1,7 @@
-sap.ui.jsview("view.App", { 
+sap.ui.jsview("sap.shineNext.odataMeta.view.App", { 
 
         getControllerName: function() {
-            return "view.App"; 
+            return "sap.shineNext.odataMeta.view.App"; 
         },
 
         createContent: function(oController) {

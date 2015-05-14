@@ -1,11 +1,11 @@
-jQuery.sap.declare("model.Config");
+jQuery.sap.declare("sap.shineNext.poa.model.Config");
 
-model.Config = {};
+sap.shineNext.poa.model.Config = {};
 
 /**
  * Supply here the service url of the service to fetch data from
  */
-model.Config.getServiceUrl = function () {
+sap.shineNext.poa.model.Config.getServiceUrl = function () {
 	return '/sap/hana/democontent/epmNext/services/poa.xsodata';
 };
 
@@ -18,6 +18,6 @@ model.Config.getServiceUrl = function () {
 	var responderOn = jQuery.sap.getUriParameters().get("responderOn");
 	
 	// set the flag for later usage
-	model.Config.isMock = ("true" === responderOn) || !model.Config.getServiceUrl();
+	sap.shineNext.poa.model.Config.isMock = ("true" === responderOn) || !sap.shineNext.poa.model.Config.getServiceUrl();
 }
 )();

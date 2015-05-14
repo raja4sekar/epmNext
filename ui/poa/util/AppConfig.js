@@ -1,11 +1,11 @@
-jQuery.sap.declare("util.AppConfig");
+jQuery.sap.declare("sap.shineNext.poa.util.AppConfig");
 
-util.AppConfig = function(oConfig){
+sap.shineNext.poa.util.AppConfig = function(oConfig){
 	this.config = oConfig;
 	this._fnValidate();
 };
 
-util.AppConfig.prototype.getStringValue = function(sPropName,args){
+sap.shineNext.poa.util.AppConfig.prototype.getStringValue = function(sPropName,args){
 	var val = this.config[sPropName];
 	
 	if (jQuery.isFunction(val)){
@@ -19,7 +19,7 @@ util.AppConfig.prototype.getStringValue = function(sPropName,args){
 	}
 };
 
-util.AppConfig.prototype.getBoolValue = function(sPropName,args){
+sap.shineNext.poa.util.AppConfig.prototype.getBoolValue = function(sPropName,args){
 	var val = this.config[sPropName];
 	
 	if (jQuery.isFunction(val)){
@@ -28,7 +28,7 @@ util.AppConfig.prototype.getBoolValue = function(sPropName,args){
 	return !!val;
 };
 
-util.AppConfig.prototype._fnValidate = function(){	
+sap.shineNext.poa.util.AppConfig.prototype._fnValidate = function(){	
 	this._isStringOfFunction("defaultPageId");
 	this._isStringOfFunction("isMaster");
 	this._isStringOfFunction("viewName");
@@ -36,7 +36,7 @@ util.AppConfig.prototype._fnValidate = function(){
 	this._isStringOfFunction("transition");
 };
 
-util.AppConfig.prototype._isStringOfFunction = function(sName){
+sap.shineNext.poa.util.AppConfig.prototype._isStringOfFunction = function(sName){
 	var val = this.config[sName];
 	
 	if(!(typeof val == 'string' || val instanceof String || jQuery.isFunction(val))){

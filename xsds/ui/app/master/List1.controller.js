@@ -1,6 +1,7 @@
 sap.ui.controller("app.master.List1", {
 
     onInit: function(oEvent) {
+    	this.getView().setModel(sap.ui.getCore().getModel());
         this.loadContent();
     },
 

@@ -1,5 +1,5 @@
 <core:View
-	controllerName="view.Master"
+	controllerName="sap.shineNext.poa.view.Master"
 	xmlns="sap.m"
 	xmlns:me="sap.me"
 	xmlns:commons="sap.ui.commons"
@@ -80,7 +80,7 @@
 					type="{device>/listItemType}" >
 					<attributes>
 						<ObjectAttribute
-							text="{path:'HISTORY_CREATEDAT', formatter:'util.Formatter.Date'}" />
+							text="{path:'HISTORY_CREATEDAT', formatter:'sap.shineNext.poa.util.Formatter.Date'}" />
 						<ObjectAttribute
 							text="{HISTORY_CREATEDBY_EMPLOYEEID}" />
 					</attributes>
@@ -89,7 +89,7 @@
 							text="{ORDERINGSTATUSDESC}"
 							state="{
 								path:'ORDERINGSTATUSDESC',
-								formatter:'util.Formatter.StatusState'
+								formatter:'sap.shineNext.poa.util.Formatter.StatusState'
 							}" />
 					</firstStatus>
 				</ObjectListItem>
